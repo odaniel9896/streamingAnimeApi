@@ -1,5 +1,5 @@
 import { Controller, HttpRequest } from '../../protocols';
-import { badRequest, ok, serverError } from '../../../main/utils/ApiResponse';
+import { badRequest, notFound, ok, serverError } from '../../../main/utils/ApiResponse';
 import { validateLogin } from '../../../validation/authentication/loginValidator';
 import { ValidationError } from 'yup';
 import { formatYupError } from '../../../main/utils/formatters/yupFormatterError';
@@ -17,6 +17,9 @@ export class LoginController implements Controller {
     } catch (error) {
       if (error instanceof ValidationError) {
         return badRequest(formatYupError(error));
+      }
+      if (error.message === 'NOT_FOUND') {
+        return notFound('user');
       }
       return serverError(error);
     }

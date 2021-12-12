@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 
 export async function comparePassword(firstPassword: string, secondPassword: string) {
-  if (!bcrypt.compareSync(firstPassword, secondPassword)) throw new Error('NOT_MATCH');
+  return bcrypt.compareSync(firstPassword, secondPassword);
 }
 
 export async function passwordCript(password: string) {

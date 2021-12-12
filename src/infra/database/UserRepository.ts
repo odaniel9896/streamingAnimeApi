@@ -2,8 +2,8 @@ import { RegisterParams } from '../../domain/usecases/authentication/register';
 import knex from '../../main/config/database/connection';
 
 export class UserRepository {
-  static async verifyEmailExists(email: string) {
-    return await knex('user as u').select({ user_id: 'u.id' }).where({ email }).first();
+  static async verifyEmailExists(email: string): Promise<{ user_id: number; password: string }> {
+    return await knex('user as u').select({ user_id: 'u.id', password: 'u.password' }).where({ email }).first();
   }
 
   static async register({ email, password }: RegisterParams): Promise<number> {

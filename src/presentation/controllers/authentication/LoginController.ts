@@ -4,6 +4,7 @@ import { validateLogin } from '../../../validation/authentication/loginValidator
 import { ValidationError } from 'yup';
 import { formatYupError } from '../../../main/utils/formatters/yupFormatterError';
 import { Login } from '../../../domain/usecases/authentication/login';
+
 export class LoginController implements Controller {
   constructor(private readonly login: Login) {}
   async handle(httpRequest: HttpRequest) {

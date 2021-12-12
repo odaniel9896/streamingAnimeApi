@@ -2,7 +2,7 @@ import Knex from 'knex';
 import { DATABASE } from '../constants';
 
 const knex = Knex({
-  client: 'mysql',
+  client: 'mysql2',
   connection: {
     host: DATABASE.DB_HOST,
     user: DATABASE.DB_USERNAME,
